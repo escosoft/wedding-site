@@ -221,10 +221,14 @@
     </aside>
 
     <!-- Map -->
-    <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                src="https://maps.google.com/maps?q=Hotel+Plaza+New+York&amp;output=embed">
-        <br />
+    <section id="contact" class="map content-container embed-container maps">
+        <iframe name="ifchurch" width="100%" height="50%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                style="pointer-events: none;" src="https://maps.google.com/maps?q=Kosciol+Bratoszewice&amp;output=embed">
+            <!--<br />-->
+        </iframe>
+        <iframe name="ifballroom" width="100%" height="50%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                style="pointer-events: none;" src="https://maps.google.com/maps?q=Hotel+Plaza+New+York&amp;output=embed">
+        <!--<br />-->
         </iframe>
     </section>
 
@@ -298,7 +302,8 @@
     });
 
     $(function() {
-        var _maps_query;
+        var _maps_query_ballroom;
+        var _maps_query_church;
         var _maps_api_key;
         $.getJSON('config.json', function(data) {
             console.log("HTML:");
@@ -309,25 +314,63 @@
             console.log("VARS:");
             $.each(data.vars, function(i,f) {
                 console.log(i + " | " + f);
-                if(i=="_maps_query") {
-                    _maps_query = f;
+                if(i=="_maps_query_church") {
+                    _maps_query_church = f;
+                } else if(i=="_maps_query_ballroom") {
+                    _maps_query_ballroom = f;
                 } else if(i=="_maps_api_key") {
                     _maps_api_key = f;
                 }
 
-                console.log(">> _maps_query: " + _maps_query + " | _maps_api_key: " + _maps_api_key);
-                if(_maps_api_key != null && _maps_query != null) {
+                console.log(">> _maps_query_ballroom: " + _maps_query_ballroom + " | _maps_api_key: " + _maps_api_key);
+                console.log(">> _maps_query_church: " + _maps_query_church + " | _maps_api_key: " + _maps_api_key);
+                if(_maps_api_key != null && _maps_query_church != null) {
                     if(_maps_api_key == "") {
                         console.log("Maps API Key not provided! Using default maps setting.")
                     } else {
-                        console.log("setting map");
-                        $("#contact iframe").attr("src",
-                                "https://www.google.com/maps/embed/v1/place?key="+_maps_api_key+"&q="+_maps_query);
+                        console.log("setting church map");
+                        $("#contact [name=ifchurch]").attr("src",
+                                "https://www.google.com/maps/embed/v1/place?key="+_maps_api_key+"&q="+_maps_query_church);
+                    }
+                }
+                if(_maps_api_key != null && _maps_query_ballroom != null) {
+                    if(_maps_api_key == "") {
+                        console.log("Maps API Key not provided! Using default maps setting.")
+                    } else {
+                        console.log("setting ballroom map");
+                        $("#contact [name=ifballroom]").attr("src",
+                                "https://www.google.com/maps/embed/v1/place?key="+_maps_api_key+"&q="+_maps_query_ballroom);
                     }
                 }
             });
         });
     });
+
+    //  MAPS SCROLL
+    // Disable scroll zooming and bind back the click event
+    var onMapMouseleaveHandler = function (event) {
+        var that = $(this);
+
+        that.on('click', onMapClickHandler);
+        that.off('mouseleave', onMapMouseleaveHandler);
+        that.find('iframe').css("pointer-events", "none");
+    };
+
+    var onMapClickHandler = function (event) {
+        var that = $(this);
+
+        // Disable the click handler until the user leaves the map area
+        that.off('click', onMapClickHandler);
+
+        // Enable scrolling zoom
+        that.find('iframe').css("pointer-events", "auto");
+
+        // Handle the mouse leave event
+        that.on('mouseleave', onMapMouseleaveHandler);
+    };
+
+    // Enable map zooming with mouse scroll when the user clicks the map
+    $('.maps.embed-container').on('click', onMapClickHandler);
     </script>
 
 </body>

@@ -6,6 +6,7 @@
   },
   "vars" : {
     "_maps_api_key": "",
-    "_maps_query": "New+York"
+    "_maps_query_church": "New+Jersey+Catholic+Church",
+    "_maps_query_ballroom": "New+York+Plaza+Hotel"
   }
 }
