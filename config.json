@@ -1,0 +1,11 @@
+{
+  "html" : {
+    "_title": "The Wedding of Monica and Jack",
+    "_subtitle": "Welcome!",
+    "_button_about": "Learn more"
+  },
+  "vars" : {
+    "_maps_api_key": "",
+    "_maps_query": "New+York"
+  }
+}
