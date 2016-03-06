@@ -1,12 +1,28 @@
 {
   "html" : {
     "_title": "The Wedding of Monica and Jack",
-    "_subtitle": "Welcome!",
-    "_button_about": "Learn more"
+    "_subtitle": "10/09/2016",
+    "_button_about": "Learn more",
+    "_about_header": "We would like to invite you to participate in our wedding ceremony.",
+    "_about_lead": "We want to share this special day with people closest to us.",
+    "_services_header": "Main Events",
+    "_service_name_1": "Church",
+    "_service_desc_1": "The wedding lithurgy will take place in St Paul's Church in New Jersey.",
+    "_service_name_2": "Ballroom",
+    "_service_desc_2": "The wedding party will take place in Plaza Hotel in New York.",
+    "_service_name_3": "Hotel",
+    "_service_desc_3": "All guests will be accommodated in the Plaza Hotel apartments.",
+    "_service_name_4": "Breakfast",
+    "_service_desc_4": "On the next day, all guests will be served breakfast in the hotel's restaurant.",
+    "_callout": "Ceremony Plan",
+    "_details_header": "Details",
+    "_details_content": "",
+    "_summary": "See you at the Wedding!",
+    "_copyright": "Copyright \u00A9 Szymon Przedwojski 2016"
   },
   "vars" : {
     "_maps_api_key": "",
-    "_maps_query_church": "New+Jersey+Catholic+Church",
+    "_maps_query_church": "New+York+Trinity+Church",
     "_maps_query_ballroom": "New+York+Plaza+Hotel"
   }
 }
